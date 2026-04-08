@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvm7c21m42f6o"]
+
+[ext_resource type="Texture2D" uid="uid://bfrke7momfu27" path="res://images/menu/menu_fixo.png" id="1_0dwhk"]
+[ext_resource type="Script" uid="uid://diwinf0t5cw3c" path="res://scenes/ui/ui.gd" id="1_7vp6q"]
+[ext_resource type="Texture2D" uid="uid://cbph0iv0bqk0j" path="res://images/menu/volume.png" id="2_pfayw"]
+[ext_resource type="Texture2D" uid="uid://cjwned70oglec" path="res://images/menu/door.png" id="4_jcn1r"]
+[ext_resource type="Texture2D" uid="uid://igml6ruve4qp" path="res://images/menu/door2.png" id="5_uegxj"]
+[ext_resource type="Texture2D" uid="uid://fxbgtv4lt34" path="res://images/menu/slider_vol2.png" id="6_7vp6q"]
+[ext_resource type="StyleBox" uid="uid://dhp8unt7hxhfv" path="res://scenes/ui/buttons/ui.tres" id="6_pfayw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vv7ut"]
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Ui" type="Node"]
+script = ExtResource("1_7vp6q")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleGame" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Container/TitleGame"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RogueAbacada"
+label_settings = SubResource("LabelSettings_vv7ut")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -33.0
+offset_right = 44.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Jogar"
+
+[node name="BoxContainer" type="HBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -131.0
+offset_right = 92.0
+offset_bottom = 131.0
+grow_vertical = 2
+
+[node name="Bar" type="TextureRect" parent="Container/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("1_0dwhk")
+
+[node name="Mute" type="TextureButton" parent="Container/BoxContainer/Bar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 38.0
+offset_right = 67.0
+offset_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("2_pfayw")
+
+[node name="Leave" type="TextureButton" parent="Container/BoxContainer/Bar"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 168.0
+offset_right = 71.0
+offset_bottom = 233.0
+size_flags_vertical = 8
+texture_normal = ExtResource("4_jcn1r")
+texture_hover = ExtResource("5_uegxj")
+
+[node name="VSlider" type="VSlider" parent="Container/BoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("6_7vp6q")
+theme_override_icons/grabber_highlight = ExtResource("6_7vp6q")
+theme_override_icons/grabber_disabled = ExtResource("6_7vp6q")
+theme_override_styles/slider = ExtResource("6_pfayw")
+theme_override_styles/grabber_area = ExtResource("6_pfayw")
+theme_override_styles/grabber_area_highlight = ExtResource("6_pfayw")
+min_value = -20.0
+max_value = 5.0
+step = 0.0
+
+[connection signal="mouse_entered" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_mouse_entered"]
+[connection signal="pressed" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_pressed"]
+[connection signal="mouse_entered" from="Container/BoxContainer/Bar/Leave" to="." method="_on_leave_mouse_entered"]
