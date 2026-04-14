@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvm7c21m42f6o"]
+[gd_scene load_steps=10 format=3 uid="uid://cvm7c21m42f6o"]
 
 [ext_resource type="Texture2D" uid="uid://bfrke7momfu27" path="res://images/menu/menu_fixo.png" id="1_0dwhk"]
-[ext_resource type="Script" uid="uid://diwinf0t5cw3c" path="res://scenes/ui/ui.gd" id="1_7vp6q"]
+[ext_resource type="Script" uid="uid://diwinf0t5cw3c" path="res://scripts/ui.gd" id="1_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://cbph0iv0bqk0j" path="res://images/menu/volume.png" id="2_pfayw"]
 [ext_resource type="Texture2D" uid="uid://cjwned70oglec" path="res://images/menu/door.png" id="4_jcn1r"]
 [ext_resource type="Texture2D" uid="uid://igml6ruve4qp" path="res://images/menu/door2.png" id="5_uegxj"]
@@ -12,6 +12,9 @@
 font_size = 32
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7vp6q"]
+msdf_pixel_range = 14
 
 [node name="Ui" type="Node"]
 script = ExtResource("1_7vp6q")
@@ -36,7 +39,7 @@ alignment = 1
 [node name="Label" type="Label" parent="Container/TitleGame"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "RogueAbacada"
+text = "Caça ao tesouro"
 label_settings = SubResource("LabelSettings_vv7ut")
 horizontal_alignment = 1
 
@@ -47,40 +50,47 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.5
-offset_top = -33.0
-offset_right = 44.5
-offset_bottom = 33.0
+offset_left = -130.0
+offset_top = -122.0
+offset_right = 130.0
+offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Start" type="Button" parent="Container/VBoxContainer"]
+custom_minimum_size = Vector2(260, 120)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = SubResource("SystemFont_7vp6q")
+theme_override_font_sizes/font_size = 32
 text = "Jogar"
 
 [node name="BoxContainer" type="HBoxContainer" parent="Container"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -131.0
-offset_right = 92.0
-offset_bottom = 131.0
+anchors_preset = -1
+anchor_top = 0.282
+anchor_bottom = 0.282
+offset_top = -0.19999695
+offset_right = 117.0
+offset_bottom = 261.8
 grow_vertical = 2
 
 [node name="Bar" type="TextureRect" parent="Container/BoxContainer"]
+clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_vertical = 8
 texture = ExtResource("1_0dwhk")
 
 [node name="Mute" type="TextureButton" parent="Container/BoxContainer/Bar"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 38.0
-offset_right = 67.0
-offset_bottom = 95.0
+offset_left = 1.0
+offset_top = 61.0
+offset_right = 66.0
+offset_bottom = 118.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource("2_pfayw")
@@ -107,6 +117,10 @@ min_value = -20.0
 max_value = 5.0
 step = 0.0
 
+[connection signal="mouse_entered" from="Container/BoxContainer/Bar" to="." method="reset_bar"]
 [connection signal="mouse_entered" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_mouse_entered"]
+[connection signal="mouse_exited" from="Container/BoxContainer/Bar/Mute" to="." method="reset_bar"]
 [connection signal="pressed" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_pressed"]
 [connection signal="mouse_entered" from="Container/BoxContainer/Bar/Leave" to="." method="_on_leave_mouse_entered"]
+[connection signal="mouse_exited" from="Container/BoxContainer/Bar/Leave" to="." method="reset_bar"]
+[connection signal="pressed" from="Container/BoxContainer/Bar/Leave" to="." method="_on_leave_pressed"]
