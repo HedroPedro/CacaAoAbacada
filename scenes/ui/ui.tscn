@@ -1,25 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvm7c21m42f6o"]
+[gd_scene format=3 uid="uid://cvm7c21m42f6o"]
 
 [ext_resource type="Texture2D" uid="uid://bfrke7momfu27" path="res://images/menu/menu_fixo.png" id="1_0dwhk"]
 [ext_resource type="Script" uid="uid://diwinf0t5cw3c" path="res://scripts/ui.gd" id="1_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://cbph0iv0bqk0j" path="res://images/menu/volume.png" id="2_pfayw"]
+[ext_resource type="Texture2D" uid="uid://dlr1uvhrr7jh0" path="res://images/buttons/buttonSquare_brown.png" id="2_uegxj"]
+[ext_resource type="Texture2D" uid="uid://cw1fv32dirnk0" path="res://images/buttons/buttonSquare_brown_pressed.png" id="3_y220t"]
 [ext_resource type="Texture2D" uid="uid://cjwned70oglec" path="res://images/menu/door.png" id="4_jcn1r"]
 [ext_resource type="Texture2D" uid="uid://igml6ruve4qp" path="res://images/menu/door2.png" id="5_uegxj"]
 [ext_resource type="Texture2D" uid="uid://fxbgtv4lt34" path="res://images/menu/slider_vol2.png" id="6_7vp6q"]
 [ext_resource type="StyleBox" uid="uid://dhp8unt7hxhfv" path="res://scenes/ui/buttons/ui.tres" id="6_pfayw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vv7ut"]
-font_size = 32
-shadow_size = 4
-shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="SystemFont" id="SystemFont_7vp6q"]
+subpixel_positioning = 0
 msdf_pixel_range = 14
 
-[node name="Ui" type="Node"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4kltc"]
+texture = ExtResource("2_uegxj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hl07w"]
+texture = ExtResource("3_y220t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uegxj"]
+texture = ExtResource("2_uegxj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y220t"]
+texture = ExtResource("2_uegxj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_swkix"]
+texture = ExtResource("2_uegxj")
+
+[node name="Ui" type="Node" unique_id=200939695]
 script = ExtResource("1_7vp6q")
 
-[node name="Container" type="Control" parent="."]
+[node name="Container" type="Control" parent="." unique_id=1471900165]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,47 +42,49 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TitleGame" type="VBoxContainer" parent="Container"]
+[node name="TitleGame" type="VBoxContainer" parent="Container" unique_id=130800772]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/TitleGame"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Caça ao tesouro"
-label_settings = SubResource("LabelSettings_vv7ut")
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="VBoxContainer" type="Control" parent="Container" unique_id=1697437967]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -122.0
-offset_right = 130.0
-offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="Start" type="Button" parent="Container/VBoxContainer"]
-custom_minimum_size = Vector2(260, 120)
-layout_mode = 2
+[node name="Start" type="Button" parent="Container/VBoxContainer" unique_id=824319799]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 10
 theme_override_fonts/font = SubResource("SystemFont_7vp6q")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxTexture_4kltc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hl07w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uegxj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_y220t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_swkix")
 text = "Jogar"
 
-[node name="BoxContainer" type="HBoxContainer" parent="Container"]
+[node name="BoxContainer" type="HBoxContainer" parent="Container" unique_id=1746179357]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.282
@@ -79,13 +94,13 @@ offset_right = 117.0
 offset_bottom = 261.8
 grow_vertical = 2
 
-[node name="Bar" type="TextureRect" parent="Container/BoxContainer"]
+[node name="Bar" type="TextureRect" parent="Container/BoxContainer" unique_id=1589118267]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("1_0dwhk")
 
-[node name="Mute" type="TextureButton" parent="Container/BoxContainer/Bar"]
+[node name="Mute" type="TextureButton" parent="Container/BoxContainer/Bar" unique_id=911827405]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 61.0
@@ -95,7 +110,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource("2_pfayw")
 
-[node name="Leave" type="TextureButton" parent="Container/BoxContainer/Bar"]
+[node name="Leave" type="TextureButton" parent="Container/BoxContainer/Bar" unique_id=82549063]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 168.0
@@ -105,7 +120,7 @@ size_flags_vertical = 8
 texture_normal = ExtResource("4_jcn1r")
 texture_hover = ExtResource("5_uegxj")
 
-[node name="VSlider" type="VSlider" parent="Container/BoxContainer"]
+[node name="VSlider" type="VSlider" parent="Container/BoxContainer" unique_id=316092334]
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("6_7vp6q")
 theme_override_icons/grabber_highlight = ExtResource("6_7vp6q")
@@ -123,4 +138,3 @@ step = 0.0
 [connection signal="pressed" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_pressed"]
 [connection signal="mouse_entered" from="Container/BoxContainer/Bar/Leave" to="." method="_on_leave_mouse_entered"]
 [connection signal="mouse_exited" from="Container/BoxContainer/Bar/Leave" to="." method="reset_bar"]
-[connection signal="pressed" from="Container/BoxContainer/Bar/Leave" to="." method="_on_leave_pressed"]

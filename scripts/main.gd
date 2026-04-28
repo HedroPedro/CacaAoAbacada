@@ -4,10 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	movie.finished.connect(_change)
+	randomize()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func _change() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/game.tscn")

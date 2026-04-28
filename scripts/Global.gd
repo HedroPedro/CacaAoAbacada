@@ -1,5 +1,7 @@
 extends Node
 
+signal _done
+
 #Node HTTPRequest
 var JsonRequest = HTTPRequest.new()
 var ImagemRequest = HTTPRequest.new()
@@ -28,16 +30,6 @@ var dicionario : Dictionary = {
 	"som" : null
 }
 
-# Dados para plataforma
-var Score : int = 0
-var erros : int = 0
-var TempoDeJogo_Min : int = 0
-var TempoDeJogo_Sec : int = 0
-var JogoConcluido : bool = false
-
-#Permite que a intro toque só uma vez
-var Intro_tocar : bool = true
-
 func _ready() -> void:
 	add_child(JsonRequest)
 	add_child(ImagemRequest)
@@ -48,7 +40,7 @@ func _ready() -> void:
 	AudioRequest.request_completed.connect(_on_audio_request_completed)
 	
 	var url = "http://localhost:8080/api/recursos/silabas?vogal=A&limite=18&tipoColorir=NAO_COLORIR&quantImagens=4"
-	const headers := [
+	var headers = [
 		"Content-Type: application/json",
 	]
 	JsonRequest.request(url,
@@ -57,11 +49,10 @@ func _ready() -> void:
 
 func _on_json_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var json_string = body.get_string_from_utf8()
-	
 	var json = JSON.parse_string(json_string)
-	
+
 	array_dicionario = json
-	
+
 	request_imagem()
 
 func request_imagem():
@@ -75,7 +66,7 @@ func request_imagem():
 
 func _on_imagem_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var image = Image.new()
-	var err = image.load_png_from_buffer(body)
+	image.load_png_from_buffer(body)
 	var texture = ImageTexture.create_from_image(image)
 	texturas.append(texture)
 	
@@ -97,13 +88,13 @@ func cria_dicionario() -> void:
 		"som" : audio
 	}
 	array_silabas.append(dicionario)
-	
+
 	index += 1
-	print(index)
-	
 	cont_img = 0
 	texturas.clear()
 	request_imagem()
+	if index == 3:
+		_done.emit()
 
 func embaralhar():
 	array_silabas.shuffle()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://goan2fdlh4sg"]
+[gd_scene format=3 uid="uid://goan2fdlh4sg"]
 
 [ext_resource type="Script" uid="uid://b13hwhg8bf4v0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://ca00yg07g5vaj" path="res://scenes/ui/movie.tscn" id="2_0wfyh"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1533727189]
 script = ExtResource("1_o5qli")
 
-[node name="Movie" parent="." instance=ExtResource("2_0wfyh")]
+[node name="Movie" parent="." unique_id=1649884358 instance=ExtResource("2_0wfyh")]
+script = null

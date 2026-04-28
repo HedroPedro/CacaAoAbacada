@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://bylcqy872s6dj"]
 
-[node name="Game" type="Node2D"]
+[ext_resource type="Script" uid="uid://c7fqr6yoijq0n" path="res://game.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cvm7c21m42f6o" path="res://scenes/ui/ui.tscn" id="2_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://by5r4tjs4aae4" path="res://images/background.jpg" id="3_iywne"]
+[ext_resource type="PackedScene" uid="uid://besv13grx325y" path="res://scenes/GameUi.tscn" id="3_lbhrr"]
+
+[node name="Game" type="Node" unique_id=70573316]
+script = ExtResource("1_lnu2h")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1759264064]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_iywne")
+
+[node name="Ui" parent="." unique_id=820516834 instance=ExtResource("2_lbhrr")]
+
+[node name="GameUi" parent="." unique_id=1496249682 instance=ExtResource("3_lbhrr")]
+visible = false

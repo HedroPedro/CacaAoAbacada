@@ -11,9 +11,6 @@ var has_sound = true
 func _on_mute_mouse_entered() -> void:
 	bar.texture = bar_sound_focus
 
-func _on_leave_pressed() -> void:
-	bar.texture = default_bar
-
 func _on_leave_mouse_entered() -> void:
 	bar.texture = bar_exit_focus
 
