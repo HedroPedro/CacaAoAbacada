@@ -28,7 +28,6 @@ Global="*res://scripts/Global.gd"
 window/size/viewport_width=1024
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
 mouse_cursor/custom_image="uid://bjkkr1j34kc5"
 
 [dotnet]

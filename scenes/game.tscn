@@ -14,9 +14,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture = ExtResource("3_iywne")
+expand_mode = 2
 
 [node name="Ui" parent="." unique_id=820516834 instance=ExtResource("2_lbhrr")]
 

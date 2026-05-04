@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b665lj8l45jxq" path="res://scripts/game_ui.gd" id="1_lg4uu"]
 [ext_resource type="PackedScene" uid="uid://b6i6auvc4xqjq" path="res://scenes/ui/Block.tscn" id="1_mj1j5"]
+[ext_resource type="Texture2D" uid="uid://xrfyhmimm3bt" path="res://images/buttons/panel_brown.png" id="2_7hvwh"]
 
 [node name="GameUi" type="Control" unique_id=1496249682]
 layout_mode = 3
@@ -13,6 +14,29 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_lg4uu")
+
+[node name="Container" type="TextureRect" parent="." unique_id=2099860886]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.5
+offset_right = 133.5
+offset_bottom = 194.0
+grow_horizontal = 2
+texture = ExtResource("2_7hvwh")
+
+[node name="Image" type="TextureRect" parent="Container" unique_id=829574478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.5
+offset_top = 10.0
+offset_right = -6.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BlocksContainer" type="HBoxContainer" parent="." unique_id=1543877225]
 layout_mode = 1

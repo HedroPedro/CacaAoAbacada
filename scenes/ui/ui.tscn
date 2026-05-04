@@ -39,8 +39,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="TitleGame" type="VBoxContainer" parent="Container" unique_id=130800772]
 layout_mode = 1
@@ -49,28 +49,22 @@ anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="VBoxContainer" type="Control" parent="Container" unique_id=1697437967]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container" unique_id=2053447099]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
+offset_left = -248.5
+offset_top = -304.0
+offset_right = 248.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="Start" type="Button" parent="Container/VBoxContainer" unique_id=824319799]
 custom_minimum_size = Vector2(300, 150)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -75.0
-offset_right = 150.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -83,6 +77,26 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_uegxj")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_y220t")
 theme_override_styles/focus = SubResource("StyleBoxTexture_swkix")
 text = "Jogar"
+
+[node name="StartStreamPlayer2D" type="AudioStreamPlayer2D" parent="Container/VBoxContainer/Start" unique_id=503632381]
+
+[node name="Tutorial" type="Button" parent="Container/VBoxContainer" unique_id=1152445606]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = SubResource("SystemFont_7vp6q")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxTexture_4kltc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hl07w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uegxj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_y220t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_swkix")
+text = "Como jogar"
+
+[node name="TutorialStreamPlayer2D" type="AudioStreamPlayer2D" parent="Container/VBoxContainer/Tutorial" unique_id=1782071621]
 
 [node name="BoxContainer" type="HBoxContainer" parent="Container" unique_id=1746179357]
 layout_mode = 1
@@ -132,6 +146,8 @@ min_value = -20.0
 max_value = 5.0
 step = 0.0
 
+[connection signal="mouse_entered" from="Container/VBoxContainer/Start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_entered" from="Container/VBoxContainer/Tutorial" to="." method="_on_tutorial_mouse_entered"]
 [connection signal="mouse_entered" from="Container/BoxContainer/Bar" to="." method="reset_bar"]
 [connection signal="mouse_entered" from="Container/BoxContainer/Bar/Mute" to="." method="_on_mute_mouse_entered"]
 [connection signal="mouse_exited" from="Container/BoxContainer/Bar/Mute" to="." method="reset_bar"]

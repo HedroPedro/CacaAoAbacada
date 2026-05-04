@@ -1,6 +1,6 @@
 extends Node
 
-@onready var btn := $Ui/Container/VBoxContainer/Start
+@onready var btns := $Ui/Container/VBoxContainer
 @onready var exitBtn := $Ui/Container/BoxContainer/Bar/Leave
 @onready var bg := $Background
 @onready var gameUi := $GameUi
@@ -11,21 +11,27 @@ var bgMaxIndex : int
 
 func _ready() -> void:
 	Global._done.connect(_enable_btn)
-	btn.disabled = true
-	btn.connect("pressed", _on_start_btn_pressed)
+	for btn in btns.get_children():
+		btn.disabled = true
+	btns.get_child(0).connect("pressed", _on_start_btn_pressed)
+	btns.get_child(1).connect("pressed", _on_tutorial_btn_pressed)
 	exitBtn.connect("pressed", _on_exit_btn_pressed)
 	gameUi._can_update.connect(update)
 	bgMaxIndex = backgrounds.size() - 1
 
 func _enable_btn():
-	btn.disabled = false
+	for btn in btns.get_children():
+		btn.disabled = false
 
 func _on_start_btn_pressed() -> void:
 	GameState = 1
-	btn.visible = false
+	btns.visible = false
 	gameUi.visible = true
 	bg.texture = backgrounds[1];
 	gameUi.updateBlocks()
+	
+func _on_tutorial_btn_pressed() -> void:
+	pass
 
 func _on_exit_btn_pressed() -> void:
 	if GameState == 0:
@@ -33,7 +39,7 @@ func _on_exit_btn_pressed() -> void:
 	GameState = 0
 	bg.texture = backgrounds[0]
 	gameUi.visible = false
-	btn.visible = true
+	btns.visible = true
 
 func update() -> void:
 	gameUi.hide()
