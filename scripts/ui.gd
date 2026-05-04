@@ -1,4 +1,4 @@
-extends Node
+extends Control
 @onready var bar := $Container/BoxContainer/Bar 
 @onready var muteBtn := $Container/BoxContainer/Bar/Mute
 @onready var startStreamPlayer := $Container/VBoxContainer/Start/StartStreamPlayer2D
@@ -11,6 +11,7 @@ var bar_exit_focus := load("res://images/menu/menu_fixo_porta.png")
 var has_sound = true
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	startStreamPlayer.stream = load("res://sounds/jogar.mp3")
 	tutorialStreamPlayer.stream = load("res://sounds/howToPlay.mp3")
 

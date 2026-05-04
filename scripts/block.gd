@@ -8,6 +8,7 @@ var index : int
 var toCall : Callable
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	soundButton.connect("pressed", _say)
 
 func _say() -> void:

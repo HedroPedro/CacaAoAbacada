@@ -29,11 +29,18 @@ texture = ExtResource("2_uegxj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_swkix"]
 texture = ExtResource("2_uegxj")
 
-[node name="Ui" type="Node" unique_id=200939695]
+[node name="Ui" type="Control" unique_id=1452402226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_7vp6q")
 
 [node name="Container" type="Control" parent="." unique_id=1471900165]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

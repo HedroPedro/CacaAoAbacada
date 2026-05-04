@@ -1,12 +1,66 @@
 [gd_scene format=3 uid="uid://bylcqy872s6dj"]
 
-[ext_resource type="Script" uid="uid://c7fqr6yoijq0n" path="res://game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cvm7c21m42f6o" path="res://scenes/ui/ui.tscn" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://by5r4tjs4aae4" path="res://images/background.jpg" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://besv13grx325y" path="res://scenes/GameUi.tscn" id="3_lbhrr"]
 
-[node name="Game" type="Node" unique_id=70573316]
-script = ExtResource("1_lnu2h")
+[sub_resource type="GDScript" id="GDScript_lnu2h"]
+script/source = "extends Node
+
+@onready var btns := $Ui/Container/VBoxContainer
+@onready var exitBtn := $Ui/Container/BoxContainer/Bar/Leave
+@onready var bg := $Background
+@onready var gameUi := $GameUi
+var GameState := 0
+
+var backgrounds := [load(\"res://images/background.jpg\"), load(\"res://images/1.png\"), load(\"res://images/2.png\"), load(\"res://images/3.png\"), load(\"res://images/end.png\")]
+var bgMaxIndex : int
+
+func _ready() -> void:
+	Global._done.connect(_enable_btn)
+	for btn in btns.get_children():
+		btn.disabled = true
+	btns.get_child(0).connect(\"pressed\", _on_start_btn_pressed)
+	btns.get_child(1).connect(\"pressed\", _on_tutorial_btn_pressed)
+	exitBtn.connect(\"pressed\", _on_exit_btn_pressed)
+	gameUi._can_update.connect(update)
+	bgMaxIndex = backgrounds.size() - 1
+
+func _enable_btn():
+	for btn in btns.get_children():
+		btn.disabled = false
+
+func _on_start_btn_pressed() -> void:
+	GameState = 1
+	btns.visible = false
+	gameUi.visible = true
+	bg.texture = backgrounds[1];
+	gameUi.updateBlocks()
+	
+func _on_tutorial_btn_pressed() -> void:
+	pass
+
+func _on_exit_btn_pressed() -> void:
+	if GameState == 0:
+		get_tree().quit()
+	GameState = 0
+	bg.texture = backgrounds[0]
+	gameUi.hide()
+	btns.visible = true
+
+func update() -> void:
+	gameUi.hide()
+	GameState += 1
+	bg.texture = backgrounds[GameState]
+	if GameState == bgMaxIndex:
+		return
+	await get_tree().create_timer(1.5).timeout
+	gameUi.updateBlocks()
+	gameUi.visible = true
+"
+
+[node name="Game" type="Node" unique_id=379118195]
+script = SubResource("GDScript_lnu2h")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1759264064]
 anchors_preset = 15
@@ -23,3 +77,5 @@ expand_mode = 2
 
 [node name="GameUi" parent="." unique_id=1496249682 instance=ExtResource("3_lbhrr")]
 visible = false
+offset_left = 250.0
+offset_right = -256.0

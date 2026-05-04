@@ -8,6 +8,7 @@ var arraySilabas := Global.array_silabas
 var correctIndex := -1
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	for i in range(3):
 		blocks[i].index = i
 		blocks[i].toCall = checkTruth
