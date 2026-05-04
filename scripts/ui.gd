@@ -8,6 +8,9 @@ var no_sound := load("res://images/menu/muted.png")
 var default_bar := load("res://images/menu/menu_fixo.png")
 var bar_sound_focus := load("res://images/menu/menu_fixo_som.png")
 var bar_exit_focus := load("res://images/menu/menu_fixo_porta.png")
+var return_icon :=load("res://images/menu/seta_back.png")
+var door_icon := load("res://images/menu/door.png")
+var door_icon2 := load("res://images/menu/door.png")
 var has_sound = true
 
 func _ready() -> void:
