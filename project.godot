@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ajude o pirata"
-run/main_scene="uid://bylcqy872s6dj"
+run/main_scene="uid://goan2fdlh4sg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

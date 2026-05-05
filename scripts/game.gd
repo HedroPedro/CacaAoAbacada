@@ -10,7 +10,7 @@ extends Node
 @onready var pirateSound := $PirateSound
 
 var GameState := 0
-var backgrounds := [load("res://images/background.jpg"), load("res://images/1.png"), load("res://images/2.png"), load("res://images/3.png"), load("res://images/end.png")]
+var backgrounds := [load("res://images/background.png"), load("res://images/1.png"), load("res://images/2.png"), load("res://images/3.png"), load("res://images/end.png")]
 var bgMaxIndex : int
 var steps := []
 var _current_tween : Tween = null
@@ -20,7 +20,6 @@ func _ready() -> void:
 	Global.musicPlayer = $Music
 	Global._done.connect(_enable_btn)
 	Global._finish_tutorial.connect(_reset_tutorial)
-	start_btn.disabled = true
 	start_btn.connect("pressed", _on_start_btn_pressed)
 	exitBtn.connect("pressed", _on_exit_btn_pressed)
 	gameUi._can_update.connect(update)

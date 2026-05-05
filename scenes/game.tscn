@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7fqr6yoijq0n" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cvm7c21m42f6o" path="res://scenes/ui/ui.tscn" id="2_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://by5r4tjs4aae4" path="res://images/background.jpg" id="3_iywne"]
+[ext_resource type="Texture2D" uid="uid://ba28xpuck1edd" path="res://images/background.png" id="2_p57ef"]
 [ext_resource type="PackedScene" uid="uid://besv13grx325y" path="res://scenes/GameUi.tscn" id="3_lbhrr"]
 [ext_resource type="AudioStream" uid="uid://c7iht48be4w71" path="res://sounds/pirate1uf.ogg" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://b6wlxntj5nxpk" path="res://images/tutorial/mouse_hand.png" id="6_u5sy4"]
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-texture = ExtResource("3_iywne")
+texture = ExtResource("2_p57ef")
 expand_mode = 2
 
 [node name="Ui" parent="." unique_id=820516834 instance=ExtResource("2_lbhrr")]

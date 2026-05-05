@@ -106,6 +106,7 @@ func cria_dicionario() -> void:
 	cont_img = 0
 	texturas.clear()
 	request_imagem()
+	print(index)
 	if index == 3:
 		_done.emit()
 
