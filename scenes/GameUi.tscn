@@ -40,11 +40,12 @@ expand_mode = 3
 
 [node name="BlocksContainer" type="HBoxContainer" parent="." unique_id=1543877225]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
+anchor_top = 0.582
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_bottom = 192.0
+anchor_bottom = 0.8880001
+offset_top = -0.2000122
+offset_bottom = 0.19995117
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 6

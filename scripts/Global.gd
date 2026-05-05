@@ -1,6 +1,7 @@
 extends Node
 
 signal _done
+signal _finish_tutorial
 
 #Node HTTPRequest
 var JsonRequest = HTTPRequest.new()
@@ -29,6 +30,18 @@ var dicionario : Dictionary = {
 	"imagens" : null,
 	"som" : null
 }
+
+var pirateSound : AudioStreamPlayer
+var musicPlayer : AudioStreamPlayer
+var done_tutorial := false
+
+func play_sound_pirate(sound : AudioStream) -> void:
+	pirateSound.stream = sound
+	pirateSound.play()
+	await pirateSound.finished
+
+func change_music_db(db : float) -> void:
+	musicPlayer.volume_db = db
 
 func _ready() -> void:
 	add_child(JsonRequest)

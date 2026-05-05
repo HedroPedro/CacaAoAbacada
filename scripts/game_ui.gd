@@ -7,13 +7,16 @@ signal _can_update
 var arraySilabas := Global.array_silabas
 var correctIndex := -1
 
+var happy : AudioStream = load("res://sounds/happy.wav")
+var unhappy : AudioStream = load("res://sounds/unhappy.wav")
+
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	for i in range(3):
 		blocks[i].index = i
 		blocks[i].toCall = checkTruth
 
-func updateBlocks():
+func updateBlocks() -> int:
 	Global.embaralhar()
 	var maxIndex := arraySilabas.size() - 1
 	var tmpIndex := {}
@@ -28,8 +31,12 @@ func updateBlocks():
 		blocks[i].update(arraySilabas[index])
 
 	imgTexture.texture = arraySilabas[indexes[correctIndex]].imagens[0]
+	return correctIndex
 
 func checkTruth(index : int):
-	if index == correctIndex:
-		updateBlocks()
-		_can_update.emit()
+	if index != correctIndex:
+		Global.play_sound_pirate(unhappy)
+		return
+	Global.play_sound_pirate(happy)
+	updateBlocks()
+	_can_update.emit()
