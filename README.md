@@ -54,9 +54,10 @@ O jogo foi desenvolvido com foco em crianças em fase de alfabetização, tornan
 ```
 caca-ao-abacada/
 ├── images/          # Imagens
-├── videos           # Videos
+├── videos/          # Videos
 ├── scenes/          # Cenas do Godot (.tscn)
 ├── scripts/         # Scripts GDScript (.gd)
+├── sounds/          # Música e efeitos sonoros 
 ├── project.godot    # Arquivo de projeto do Godot
 └── README.md
 ```
