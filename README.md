@@ -8,9 +8,20 @@ Caça ao Abacada é um jogo educacional feito para auxiliar na alfabetização i
 
 ## Sobre o Jogo
 
-O jogador acompanha um pirata em sua busca pelo tesouro perdido. A cada passo do caminho, uma pergunta silábica aparece na tela — escolha a sílaba certa e avance.
+O jogador acompanha um pirata em sua busca pelo tesouro perdido. A cada passo do caminho, uma imagem surge na tela — escolha a sílaba certa e avance.
 
-O jogo foi desenvolvido com foco em crianças em fase de alfabetização, tornando o aprendizado lúdico, dinâmico e motivador.
+O jogo foi desenvolvido com foco em crianças em fase de alfabetização para o nível silábico **"A"**, com o objetivo de facilitar a **memorização das sílabas** por meio de repetição lúdica e reforço positivo.
+
+### Impacto Pedagógico
+
+O **método Abacada** estrutura o aprendizado da leitura a partir do reconhecimento progressivo de sílabas, partindo das mais simples para as mais complexas. O Caça ao Abacada aplica esse método em um ambiente gamificado, o que traz benefícios concretos para o processo de alfabetização:
+
+- **Associação imagem–sílaba:** cada rodada apresenta uma imagem junto à sílaba correspondente, reforçando a conexão entre o símbolo escrito e seu som — técnica central do método Abacada.
+- **Repetição espaçada:** a progressão em fases expõe a criança às mesmas sílabas em contextos variados, consolidando a memorização sem tornar o exercício mecânico ou entediante.
+- **Reforço positivo imediato:** o feedback visual ao acertar (o pirata avança) e ao errar (o pirata reclama) cria um ciclo motivacional que encoraja a tentativa sem penalizar o erro de forma negativa.
+- **Engajamento emocional:** a narrativa do pirata e do tesouro mantém a criança imersa na atividade, reduzindo a resistência comum ao aprendizado formal de leitura.
+- **Autonomia e ritmo próprio:** o jogo permite que cada criança avance no seu tempo, respeitando diferentes ritmos de aprendizado.
+O jogo é indicado como ferramenta complementar em sala de aula ou em casa, especialmente nas fases iniciais de contato com o sistema silábico.
 
 ---
 
