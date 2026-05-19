@@ -29,8 +29,7 @@ func updateBlocks() -> int:
 	for i in range(3):
 		var index : int = indexes[i]
 		blocks[i].update(arraySilabas[index])
-
-	imgTexture.texture = arraySilabas[indexes[correctIndex]].imagens[0]
+	imgTexture.texture = load(arraySilabas[indexes[correctIndex]].imagens[0].imagem)
 	return correctIndex
 
 func checkTruth(index : int):

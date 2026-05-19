@@ -8,7 +8,7 @@ var toCall : Callable
 
 func update(valDict : Dictionary) -> void:
 	wordLabel.text = valDict["silaba"]
-	audio = valDict["som"]
+	audio = load(valDict["som"])
 
 func _on_texture_button_pressed() -> void:
 	toCall.call(index)

@@ -7,4 +7,3 @@
 script = ExtResource("1_o5qli")
 
 [node name="Movie" parent="." unique_id=1649884358 instance=ExtResource("2_0wfyh")]
-script = null
