@@ -42,14 +42,6 @@ O jogo é indicado como ferramenta complementar em sala de aula ou em casa, espe
 
 ---
 
-## Como jogar
-
-1. Baixe o executável na [página de releases](../../releases)
-2. Execute o arquivo correspondente ao seu sistema operacional
-3. Divirta-se aprendendo!
-
----
-
 ## Como editar o projeto
 
 1. Instale o [Godot 4.5+](https://godotengine.org/download)
