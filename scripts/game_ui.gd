@@ -39,3 +39,7 @@ func checkTruth(index : int):
 	Global.play_sound_pirate(happy)
 	updateBlocks()
 	_can_update.emit()
+
+func changeBlkDisable(disable : bool) -> void:
+	for blk in blocks:
+		blk.btn.disabled = disable

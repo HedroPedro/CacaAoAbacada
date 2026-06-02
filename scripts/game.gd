@@ -4,6 +4,7 @@ extends Node
 @onready var skip_btn := $Ui/SkipTutorial
 @onready var exitBtn := $Ui/BoxContainer/Bar/Leave
 @onready var bg := $Background
+@onready var ui := $Ui
 @onready var gameUi := $GameUi
 @onready var blockContainer := $GameUi/BlocksContainer
 @onready var cursor := $Cursor
@@ -31,17 +32,17 @@ func _enable_btn():
 
 func _on_start_btn_pressed() -> void:
 	GameState = 1
+	gameUi.changeBlkDisable(true)
 	gameUi.updateBlocks()
 	start_btn.visible = false
 	gameUi.visible = true
 	bg.texture = backgrounds[1];
 	$Ui.swap_exit_btn()
-	if not Global.done_tutorial:
-		tutorial()
+	tutorial()
 
 func create_step_dict(target: Control, voice: AudioStream , click: bool, produce_sound : bool = false)\
-	-> Dictionary:
-		return {"target": target, "voice": voice, "click": click, "produce_sound": produce_sound}
+-> Dictionary:
+	return {"target": target, "voice": voice, "click": click, "produce_sound": produce_sound}
 
 func tutorial() -> void:
 	var correct_index : int = gameUi.updateBlocks()
@@ -60,12 +61,8 @@ func tutorial() -> void:
 	for step in steps:
 		var target : Control = step["target"]
 		var stream : AudioStream = step["voice"]
-		if Global.done_tutorial:
-			break
 		if target:
 			await move_pseudo_mouse(target)
-			if Global.done_tutorial:
-				break
 			if step["produce_sound"]:
 				target._on_texture_button_mouse_entered()
 			if step["click"]:
@@ -74,15 +71,14 @@ func tutorial() -> void:
 		pirateSound.stream = stream
 		pirateSound.play()
 		await pirateSound.finished
-		if Global.done_tutorial:
-			break
 		timer.start()
 		await timer.timeout
-	Global.done_tutorial = true
 	skip_btn.visible = false
 	cursor.visible = false
+	cursor.set_position(Vector2(856.0, 80.0))
 	GameState = 0
 	update()
+	gameUi.changeBlkDisable(false)
 
 func move_pseudo_mouse(target: Control):
 	var dest := target.get_global_rect().get_center()
@@ -104,8 +100,6 @@ func _on_exit_btn_pressed() -> void:
 	start_btn.visible = true
 
 func _reset_tutorial() -> void:
-	Global.done_tutorial = true
-
 	if _current_tween:
 		_current_tween.kill()
 		_current_tween = null
@@ -116,8 +110,10 @@ func _reset_tutorial() -> void:
 	cursor.visible = false
 	skip_btn.visible = false
 	steps.clear()
+	gameUi.changeBlkDisable(false)
 
 func update() -> void:
+	ui.setDisabledBtn(true)
 	gameUi.hide()
 	GameState += 1
 	bg.texture = backgrounds[GameState]
@@ -126,3 +122,4 @@ func update() -> void:
 		return
 	gameUi.updateBlocks()
 	gameUi.show()
+	ui.setDisabledBtn(false)

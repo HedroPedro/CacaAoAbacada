@@ -70,3 +70,6 @@ func swap_exit_btn() -> void:
 	leave_btn_player.stream = exit_sound
 	leaveBtn.texture_normal = door_icon
 	leaveBtn.texture_hover = door_icon2
+
+func setDisabledBtn(disable : bool):
+	leaveBtn.disabled = disable
