@@ -1,5 +1,6 @@
 extends Control
 
+@onready var btn := $TextureButton
 @onready var wordLabel := $TextureButton/Word
 @onready var soundStream := $AudioStreamPlayer2D
 var audio : AudioStreamOggVorbis

@@ -9,8 +9,6 @@ var words: Dictionary
 var array_silabas: Array
 var array_imagens: Array
 
-var done_tutorial := false
-
 var pirateSound: AudioStreamPlayer
 var musicPlayer: AudioStreamPlayer
 

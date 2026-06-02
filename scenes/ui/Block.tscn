@@ -27,6 +27,7 @@ grow_vertical = 2
 texture_normal = ExtResource("1_cqoya")
 texture_pressed = ExtResource("2_0s4vu")
 texture_hover = ExtResource("1_cqoya")
+texture_disabled = ExtResource("1_cqoya")
 stretch_mode = 0
 
 [node name="Word" type="Label" parent="TextureButton" unique_id=1599485761]
