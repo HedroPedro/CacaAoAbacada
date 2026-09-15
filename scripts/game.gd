@@ -46,6 +46,7 @@ func create_step_dict(target: Control, voice: AudioStream , click: bool, produce
 	return {"target": target, "voice": voice, "click": click, "produce_sound": produce_sound}
 
 func tutorial() -> void:
+	_tutorial_cancelled = false
 	var correct_index : int = gameUi.updateBlocks()
 	var false_index := randi_range(0, 2)
 	var timer := $Timer
@@ -60,13 +61,14 @@ func tutorial() -> void:
 		])
 	await get_tree().process_frame
 	await get_tree().process_frame
-	for step in steps:
-		if _tutorial_cancelled:
-			break
+
+	for step in steps.duplicate():
+		if _tutorial_cancelled: return
 		var target : Control = step["target"]
 		var stream : AudioStream = step["voice"]
 		if target:
 			await move_pseudo_mouse(target)
+			if _tutorial_cancelled: return
 			if step["produce_sound"]:
 				target._on_texture_button_mouse_entered()
 			if step["click"]:
@@ -75,8 +77,12 @@ func tutorial() -> void:
 		pirateSound.stream = stream
 		pirateSound.play()
 		await pirateSound.finished
+		if _tutorial_cancelled: return
+
 		timer.start()
 		await timer.timeout
+		if _tutorial_cancelled: return
+
 	skip_btn.visible = false
 	cursor.visible = false
 	cursor.set_position(Vector2(856.0, 80.0))
@@ -86,7 +92,7 @@ func tutorial() -> void:
 
 func move_pseudo_mouse(target: Control):
 	var dest := target.get_global_rect().get_center()
-	dest.x += 1.0
+	dest.x -= 1.0
 	_current_tween = create_tween()
 	_current_tween.tween_property(cursor, "global_position", dest, 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
@@ -94,29 +100,37 @@ func move_pseudo_mouse(target: Control):
 	await _current_tween.finished
 	_current_tween = null
 
+func _reset_tutorial() -> void:
+	_tutorial_cancelled = true
+
+	if _current_tween:
+		var t := _current_tween
+		_current_tween = null
+		t.kill()
+		t.emit_signal("finished")   # libera o await em move_pseudo_mouse
+
+	if pirateSound.playing:
+		pirateSound.stop()
+	pirateSound.emit_signal("finished")  # libera o await da voz
+
+	$Timer.stop()
+	$Timer.emit_signal("timeout")  # libera o await do timer
+
+	cursor.visible = false
+	skip_btn.visible = false
+	steps.clear()
+	gameUi.changeBlkDisable(false)
+
 func _on_exit_btn_pressed() -> void:
 	if GameState == 0:
 		get_tree().quit()
-		return;
+		return
 	_reset_tutorial()
 	$Ui.swap_exit_btn()
 	GameState = 0
 	bg.texture = backgrounds[0]
 	gameUi.visible = false
 	start_btn.visible = true
-
-func _reset_tutorial() -> void:
-	if _current_tween:
-		_current_tween.kill()
-		_current_tween = null
-
-	pirateSound.stop()
-	$Timer.stop()
-
-	cursor.visible = false
-	skip_btn.visible = false
-	steps.clear()
-	gameUi.changeBlkDisable(false)
 
 func update() -> void:
 	ui.setDisabledBtn(true)
