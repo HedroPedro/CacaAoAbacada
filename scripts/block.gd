@@ -12,6 +12,8 @@ func update(valDict : Dictionary) -> void:
 	audio = load(valDict["som"])
 
 func _on_texture_button_pressed() -> void:
+	soundStream.stream = audio
+	soundStream.play()
 	toCall.call(index)
 
 func _on_texture_button_mouse_entered() -> void:

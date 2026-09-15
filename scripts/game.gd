@@ -14,7 +14,9 @@ var GameState := 0
 var backgrounds := [load("res://images/background.png"), load("res://images/1.png"), load("res://images/2.png"), load("res://images/3.png"), load("res://images/end.png")]
 var bgMaxIndex : int
 var steps := []
+
 var _current_tween : Tween = null
+var _tutorial_cancelled := false
 
 func _ready() -> void:
 	Global.pirateSound = pirateSound
@@ -25,7 +27,6 @@ func _ready() -> void:
 	exitBtn.connect("pressed", _on_exit_btn_pressed)
 	gameUi._can_update.connect(update)
 	bgMaxIndex = backgrounds.size() - 1
-	steps.append(create_step_dict($GameUi/Container/Image, load("res://sounds/step1.mp3"), false))
 
 func _enable_btn():
 	start_btn.disabled = false
@@ -53,12 +54,15 @@ func tutorial() -> void:
 	while false_index == correct_index:
 		false_index = randi_range(0, 2)
 	steps.append_array([
+		create_step_dict($GameUi/Container/Image, load("res://sounds/step1.mp3"), false),
 		create_step_dict(blockContainer.get_child(false_index), load("res://sounds/step2.mp3"), true, true),
 		create_step_dict(blockContainer.get_child(correct_index), load("res://sounds/step3.mp3"), true, true),
 		])
 	await get_tree().process_frame
 	await get_tree().process_frame
 	for step in steps:
+		if _tutorial_cancelled:
+			break
 		var target : Control = step["target"]
 		var stream : AudioStream = step["voice"]
 		if target:
@@ -82,6 +86,7 @@ func tutorial() -> void:
 
 func move_pseudo_mouse(target: Control):
 	var dest := target.get_global_rect().get_center()
+	dest.x += 1.0
 	_current_tween = create_tween()
 	_current_tween.tween_property(cursor, "global_position", dest, 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
@@ -92,6 +97,7 @@ func move_pseudo_mouse(target: Control):
 func _on_exit_btn_pressed() -> void:
 	if GameState == 0:
 		get_tree().quit()
+		return;
 	_reset_tutorial()
 	$Ui.swap_exit_btn()
 	GameState = 0
@@ -118,8 +124,11 @@ func update() -> void:
 	GameState += 1
 	bg.texture = backgrounds[GameState]
 	await get_tree().create_timer(1.25).timeout
+	ui.setDisabledBtn(false)
 	if GameState == bgMaxIndex:
 		return
 	gameUi.updateBlocks()
 	gameUi.show()
-	ui.setDisabledBtn(false)
+
+func _on_music_finished() -> void:
+	$Music.play()

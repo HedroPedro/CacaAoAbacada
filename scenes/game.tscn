@@ -52,3 +52,5 @@ grow_vertical = 2
 texture = ExtResource("6_u5sy4")
 
 [node name="Timer" type="Timer" parent="." unique_id=745868348]
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
