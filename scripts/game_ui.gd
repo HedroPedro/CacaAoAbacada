@@ -7,8 +7,8 @@ signal _can_update
 var arraySilabas := Global.array_silabas
 var correctIndex := -1
 
-var happy : AudioStream = load("res://sounds/happy.wav")
-var unhappy : AudioStream = load("res://sounds/unhappy.wav")
+var happy : AudioStream = load("res://sounds/happy.mp3")
+var unhappy : AudioStream = load("res://sounds/unhappy.mp3")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS

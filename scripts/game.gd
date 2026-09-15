@@ -63,9 +63,15 @@ func tutorial() -> void:
 		])
 	await get_tree().process_frame
 	await get_tree().process_frame
+<<<<<<< HEAD
 
 	for step in steps.duplicate():
 		if _tutorial_cancelled: return
+=======
+	for step in steps:
+		if _tutorial_cancelled:
+			break
+>>>>>>> 650cb03 (fix: return button not returning)
 		var target : Control = step["target"]
 		var stream : AudioStream = step["voice"]
 		if target:
@@ -94,7 +100,11 @@ func tutorial() -> void:
 
 func move_pseudo_mouse(target: Control) -> bool:
 	var dest := target.get_global_rect().get_center()
+<<<<<<< HEAD
 	dest.x -= 1.0
+=======
+	dest.x += 1.0
+>>>>>>> 650cb03 (fix: return button not returning)
 	_current_tween = create_tween()
 	_current_tween.tween_property(cursor, "global_position", dest, 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
@@ -126,7 +136,11 @@ func _reset_tutorial() -> void:
 func _on_exit_btn_pressed() -> void:
 	if GameState == 0:
 		get_tree().quit()
+<<<<<<< HEAD
 		return
+=======
+		return;
+>>>>>>> 650cb03 (fix: return button not returning)
 	_reset_tutorial()
 	$Ui.swap_exit_btn()
 	GameState = 0

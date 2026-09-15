@@ -1,0 +1,4 @@
+res://scenes/GameUi.tscn
+res://scripts/game_ui.gd
+res://scripts/game.gd
+res://scenes/game.tscn
