@@ -5,7 +5,6 @@ extends Node
 @onready var exitBtn := $Ui/BoxContainer/Bar/Leave
 @onready var bg := $Background
 @onready var ui := $Ui
-@onready var ui := $Ui
 @onready var gameUi := $GameUi
 @onready var blockContainer := $GameUi/BlocksContainer
 @onready var cursor := $Cursor
@@ -26,8 +25,6 @@ func _ready() -> void:
 	Global._finish_tutorial.connect(_reset_tutorial)
 	start_btn.connect("pressed", _on_start_btn_pressed)
 	exitBtn.connect("pressed", _on_exit_btn_pressed)
-	skip_btn.connect("pressed", _on_skip_btn_pressed)
-	skip_btn.connect("pressed", _on_skip_btn_pressed)
 	gameUi._can_update.connect(update)
 	bgMaxIndex = backgrounds.size() - 1
 
@@ -37,18 +34,14 @@ func _enable_btn():
 func _on_start_btn_pressed() -> void:
 	GameState = 1
 	gameUi.changeBlkDisable(true)
-	gameUi.changeBlkDisable(true)
 	gameUi.updateBlocks()
 	start_btn.visible = false
 	gameUi.visible = true
 	bg.texture = backgrounds[1];
 	$Ui.swap_exit_btn()
 	tutorial()
-	tutorial()
 
 func create_step_dict(target: Control, voice: AudioStream , click: bool, produce_sound : bool = false)\
--> Dictionary:
-	return {"target": target, "voice": voice, "click": click, "produce_sound": produce_sound}
 -> Dictionary:
 	return {"target": target, "voice": voice, "click": click, "produce_sound": produce_sound}
 
@@ -59,8 +52,6 @@ func tutorial() -> void:
 	var timer := $Timer
 	cursor.visible = true
 	skip_btn.visible = true
-	_skip_requested = false
-	_skip_requested = false
 	while false_index == correct_index:
 		false_index = randi_range(0, 2)
 	steps.append_array([
@@ -70,15 +61,9 @@ func tutorial() -> void:
 		])
 	await get_tree().process_frame
 	await get_tree().process_frame
-<<<<<<< HEAD
 
 	for step in steps.duplicate():
 		if _tutorial_cancelled: return
-=======
-	for step in steps:
-		if _tutorial_cancelled:
-			break
->>>>>>> 650cb03 (fix: return button not returning)
 		var target : Control = step["target"]
 		var stream : AudioStream = step["voice"]
 		if target:
@@ -101,26 +86,18 @@ func tutorial() -> void:
 	skip_btn.visible = false
 	cursor.visible = false
 	cursor.set_position(Vector2(856.0, 80.0))
-	cursor.set_position(Vector2(856.0, 80.0))
 	GameState = 0
 	update()
 	gameUi.changeBlkDisable(false)
-	gameUi.changeBlkDisable(false)
 
-func move_pseudo_mouse(target: Control) -> bool:
-func move_pseudo_mouse(target: Control) -> bool:
+func move_pseudo_mouse(target: Control):
 	var dest := target.get_global_rect().get_center()
-<<<<<<< HEAD
 	dest.x -= 1.0
-=======
-	dest.x += 1.0
->>>>>>> 650cb03 (fix: return button not returning)
 	_current_tween = create_tween()
 	_current_tween.tween_property(cursor, "global_position", dest, 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
-	var skipped := await _wait_or_skip(_current_tween.finished)
-	var skipped := await _wait_or_skip(_current_tween.finished)
+	await _current_tween.finished
 	_current_tween = null
 
 func _reset_tutorial() -> void:
@@ -147,11 +124,7 @@ func _reset_tutorial() -> void:
 func _on_exit_btn_pressed() -> void:
 	if GameState == 0:
 		get_tree().quit()
-<<<<<<< HEAD
 		return
-=======
-		return;
->>>>>>> 650cb03 (fix: return button not returning)
 	_reset_tutorial()
 	$Ui.swap_exit_btn()
 	GameState = 0
@@ -161,15 +134,12 @@ func _on_exit_btn_pressed() -> void:
 
 func update() -> void:
 	ui.setDisabledBtn(true)
-	ui.setDisabledBtn(true)
 	gameUi.hide()
 	GameState += 1
 	bg.texture = backgrounds[GameState]
 	await get_tree().create_timer(1.25).timeout
 	ui.setDisabledBtn(false)
 	if GameState == bgMaxIndex:
-		ui.setDisabledBtn(false)
-		ui.setDisabledBtn(false)
 		return
 	gameUi.updateBlocks()
 	gameUi.show()
