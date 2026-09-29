@@ -25,6 +25,7 @@ func _ready() -> void:
 	Global._finish_tutorial.connect(_reset_tutorial)
 	start_btn.connect("pressed", _on_start_btn_pressed)
 	exitBtn.connect("pressed", _on_exit_btn_pressed)
+	skip_btn.connect("pressed", _on_skip_btn_pressed)
 	gameUi._can_update.connect(update)
 	bgMaxIndex = backgrounds.size() - 1
 
@@ -52,6 +53,7 @@ func tutorial() -> void:
 	var timer := $Timer
 	cursor.visible = true
 	skip_btn.visible = true
+	_skip_requested = false
 	while false_index == correct_index:
 		false_index = randi_range(0, 2)
 	steps.append_array([
@@ -90,14 +92,14 @@ func tutorial() -> void:
 	update()
 	gameUi.changeBlkDisable(false)
 
-func move_pseudo_mouse(target: Control):
+func move_pseudo_mouse(target: Control) -> bool:
 	var dest := target.get_global_rect().get_center()
 	dest.x -= 1.0
 	_current_tween = create_tween()
 	_current_tween.tween_property(cursor, "global_position", dest, 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
-	await _current_tween.finished
+	var skipped := await _wait_or_skip(_current_tween.finished)
 	_current_tween = null
 
 func _reset_tutorial() -> void:
@@ -140,6 +142,7 @@ func update() -> void:
 	await get_tree().create_timer(1.25).timeout
 	ui.setDisabledBtn(false)
 	if GameState == bgMaxIndex:
+		ui.setDisabledBtn(false)
 		return
 	gameUi.updateBlocks()
 	gameUi.show()
